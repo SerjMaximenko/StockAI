@@ -19,9 +19,9 @@ TOPIC_NAME = "historical-data"
 
 # Гиперпараметры модели
 SEQUENCE_LENGTH = 50
-EPOCHS = 200
+EPOCHS = 2000
 BATCH_SIZE = 16
-LEARNING_RATE = 0.001
+LEARNING_RATE = 0.0001
 
 # Создаём LSTM-модель
 class StockLSTM(nn.Module):
@@ -106,7 +106,7 @@ def train_model():
         y_train = torch.tensor(y, dtype=torch.float32).view(-1, 1).to(device)
 
         # Создаём и обучаем модель
-        model = StockLSTM(input_size=5, hidden_size=200, num_layers=5, output_size=1).to(device)
+        model = StockLSTM(input_size=5, hidden_size=500, num_layers=5, output_size=1).to(device)
         criterion = nn.MSELoss()
         optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
 
